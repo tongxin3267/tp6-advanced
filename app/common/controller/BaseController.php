@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 declare (strict_types = 1);
 
-namespace app;
+namespace app\common\controller;
 
 use think\App;
 use think\exception\ValidateException;
