@@ -2,6 +2,7 @@
 
 use think\migration\Migrator;
 use think\migration\db\Column;
+use app\components\table\CommonTable;
 
 class AddTbAuthGroupRuleTable extends Migrator
 {
@@ -28,10 +29,14 @@ class AddTbAuthGroupRuleTable extends Migrator
      */
     public function up()
     {
-        $table = $this->table();
+        $table = $this->table(CommonTable::TB_AUTH_GROUP_RULE,['engine'=>'MyISam']);
+        $table->addColumn(Column::integer('group_id')->setDefault(0)->setComment('用户组ID'))
+            ->addColumn(Column::integer('rule_id')->setDefault(0)->setComment('用户ID'))
+            ->addColumn(Column::string('app_id',64)->setDefault('')->setComment('应用ID'))
+            ->create();
     }
 
     public function down(){
-
+        $this->table(CommonTable::TB_AUTH_GROUP_RULE)->drop();
     }
 }

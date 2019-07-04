@@ -2,6 +2,7 @@
 
 use think\migration\Migrator;
 use think\migration\db\Column;
+use app\components\table\CommonTable;
 
 class AddTbAuthGroupAccessTable extends Migrator
 {
@@ -26,12 +27,21 @@ class AddTbAuthGroupAccessTable extends Migrator
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
+    /**
+     * create group_access table
+     */
     public function up()
     {
-        $table = $this->table();
+        $table = $this->table(CommonTable::TB_AUTH_GROUP_ACCESS,['engine'=>'MyISam']);
+        $table->addColumn(Column::integer('group_id')->setDefault(0)->setComment('用户组ID'))
+            ->addColumn(Column::integer('uid')->setDefault(0)->setComment('用户ID'))
+            ->addColumn(Column::string('app_id',64)->setDefault('')->setComment('应用ID'))
+            ->create();
     }
-
+    /**
+     * drop group_access table
+     */
     public function down(){
-
+        $this->table(CommonTable::TB_AUTH_GROUP_ACCESS)->drop();
     }
 }
