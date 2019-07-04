@@ -2,8 +2,9 @@
 
 use think\migration\Migrator;
 use think\migration\db\Column;
+use app\components\table\CommonTable;
 
-class AddTbAuthPositionTable extends Migrator
+class AddTbAppVersionTable extends Migrator
 {
     /**
      * Change Method.
@@ -28,10 +29,13 @@ class AddTbAuthPositionTable extends Migrator
      */
     public function up()
     {
-        $table = $this->table();
+        $table = $this->table(CommonTable::TB_APP_VERSION,array('engine'=>'InnoDB'));
+        $table->addColumn(Column::string('app_id',64)->setDefault('')->setComment('应用ID'))
+            ->addColumn(Column::string('app_id',64)->setDefault('')->setComment('应用ID'))
+            ->create();
     }
 
     public function down(){
-
+        $this->table(CommonTable::TB_APP_VERSION)->drop();
     }
 }

@@ -4,7 +4,7 @@ use think\migration\Migrator;
 use think\migration\db\Column;
 use app\components\table\CommonTable;
 
-class AddTbAuthAppTable extends Migrator
+class AddTbAppTable extends Migrator
 {
     /**
      * Change Method.
@@ -30,7 +30,7 @@ class AddTbAuthAppTable extends Migrator
     public function up()
     {
         // create app table
-        $table = $this->table(CommonTable::TB_AUTH_APP,['engine'=>'InnerDB']);
+        $table = $this->table(CommonTable::TB_APP,['engine'=>'InnoDB']);
         $table->addColumn(Column::string('app_id',64)->setNull(false)->setDefault('')->setComment('应用ID'))
         ->addColumn(Column::string('name',64)->setNull(false)->setDefault('')->setComment('应用名称'))
         ->addColumn(Column::string('app_secret',64)->setNull(false)->setDefault('')->setComment('应用密钥'))
@@ -51,6 +51,6 @@ class AddTbAuthAppTable extends Migrator
      */
     public function down(){
         // drop app table
-        $this->table(CommonTable::TB_AUTH_APP)->drop();
+        $this->table(CommonTable::TB_APP)->drop();
     }
 }

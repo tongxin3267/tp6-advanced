@@ -3,7 +3,7 @@
 use think\migration\Migrator;
 use think\migration\db\Column;
 
-class AddTbAuthAppVersionTable extends Migrator
+class AddTbLoginLogTable extends Migrator
 {
     /**
      * Change Method.

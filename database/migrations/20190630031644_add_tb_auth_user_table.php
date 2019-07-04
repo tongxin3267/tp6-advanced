@@ -30,7 +30,7 @@ class AddTbAuthUserTable extends Migrator
     public function up()
     {
         // create user table
-        $table = $this->table(CommonTable::TB_AUTH_USER,array('engine'=>'InnerDB'));
+        $table = $this->table(CommonTable::TB_AUTH_USER,array('engine'=>'InnoDB'));
 
         $table->addColumn(Column::string('username',32)->setNull(false)->setComment('账号')->setUnique())
             ->addColumn(Column::string('password_hash',32)->setNull(false)->setDefault('')->setComment('HASH密码'))

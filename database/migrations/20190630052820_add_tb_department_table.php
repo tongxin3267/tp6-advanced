@@ -2,9 +2,8 @@
 
 use think\migration\Migrator;
 use think\migration\db\Column;
-use app\components\table\CommonTable;
 
-class AddTbAuthUserAppTable extends Migrator
+class AddTbDepartmentTable extends Migrator
 {
     /**
      * Change Method.
@@ -27,20 +26,12 @@ class AddTbAuthUserAppTable extends Migrator
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    /**
-     * create user_app
-     */
     public function up()
     {
-        $table = $this->table(CommonTable::TB_AUTH_USER_APP,['engine'=>'MyISam']);
-        $table->addColumn(Column::integer('uid')->setDefault(0)->setComment('用户ID'))
-            ->addColumn(Column::string('app_id',64)->setDefault(0)->setComment('用户ID'))
-            ->create();
+        $table = $this->table();
     }
-    /**
-     * drop user_app
-     */
+
     public function down(){
-        $this->table(CommonTable::TB_AUTH_USER_APP)->drop();
+
     }
 }
