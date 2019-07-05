@@ -2,6 +2,7 @@
 
 use think\migration\Migrator;
 use think\migration\db\Column;
+use app\components\table\CommonTable;
 
 class AddTbLoginLogTable extends Migrator
 {
@@ -28,10 +29,15 @@ class AddTbLoginLogTable extends Migrator
      */
     public function up()
     {
-        $table = $this->table();
+        $table = $this->table(CommonTable::TB_LOGIN_LOG,['engine'=>'InnoDB','comment'=>'登录日志表']);
+        $table->addColumn(Column::string('app_id',64)->setDefault('')->setComment('应用ID'))
+        ->addColumn(Column::integer('uid')->setDefault(0)->setComment('用户ID'))
+        ->addColumn(Column::string('ip',32)->setDefault('')->setComment('ip'))
+        ->addColumn(Column::integer('create_time')->setDefault(0)->setComment('登录时间'))
+        ->create();
     }
 
     public function down(){
-
+        $this->table(CommonTable::TB_LOGIN_LOG)->drop();
     }
 }

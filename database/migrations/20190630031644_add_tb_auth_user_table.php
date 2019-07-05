@@ -30,7 +30,7 @@ class AddTbAuthUserTable extends Migrator
     public function up()
     {
         // create user table
-        $table = $this->table(CommonTable::TB_AUTH_USER,array('engine'=>'InnoDB'));
+        $table = $this->table(CommonTable::TB_AUTH_USER,['engine'=>'InnoDB','comment'=>'帐号表']);
 
         $table->addColumn(Column::string('username',32)->setNull(false)->setComment('账号')->setUnique())
             ->addColumn(Column::string('password_hash',32)->setNull(false)->setDefault('')->setComment('HASH密码'))
@@ -49,6 +49,7 @@ class AddTbAuthUserTable extends Migrator
             ->addColumn(Column::string('address',128)->setNull(false)->setDefault('')->setComment('地址'))
             ->addColumn(Column::string('skill',255)->setNull(false)->setDefault('')->setComment('技能'))
             ->addTimestamps()
+            ->addIndex(['username'],['unique'=>true])
             ->save();
     }
     /**

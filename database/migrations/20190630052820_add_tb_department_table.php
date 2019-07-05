@@ -2,6 +2,7 @@
 
 use think\migration\Migrator;
 use think\migration\db\Column;
+use app\components\table\CommonTable;
 
 class AddTbDepartmentTable extends Migrator
 {
@@ -28,10 +29,13 @@ class AddTbDepartmentTable extends Migrator
      */
     public function up()
     {
-        $table = $this->table();
+        $table = $this->table(CommonTable::TB_DEPARTMENT,['engine'=>'InnoDB','comment'=>'部门表']);
+        $table->addColumn(Column::string('name',64)->setDefault('')->setComment('部门名称'))
+            ->addColumn(Column::integer('create_time')->setDefault(0)->setComment('创建时间'))
+            ->create();
     }
 
     public function down(){
-
+        $this->table(CommonTable::TB_DEPARTMENT)->drop();
     }
 }

@@ -32,7 +32,7 @@ class AddTbAuthGroupAccessTable extends Migrator
      */
     public function up()
     {
-        $table = $this->table(CommonTable::TB_AUTH_GROUP_ACCESS,['engine'=>'MyISam']);
+        $table = $this->table(CommonTable::TB_AUTH_GROUP_ACCESS,['engine'=>'InnoDB','comment'=>'角色帐号关联表']);
         $table->addColumn(Column::integer('group_id')->setDefault(0)->setComment('用户组ID'))
             ->addColumn(Column::integer('uid')->setDefault(0)->setComment('用户ID'))
             ->addColumn(Column::string('app_id',64)->setDefault('')->setComment('应用ID'))

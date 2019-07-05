@@ -32,7 +32,7 @@ class AddTbUserAppTable extends Migrator
      */
     public function up()
     {
-        $table = $this->table(CommonTable::TB_USER_APP,['engine'=>'MyISam']);
+        $table = $this->table(CommonTable::TB_USER_APP,['engine'=>'InnoDB','comment'=>'帐号应用关联表']);
         $table->addColumn(Column::integer('uid')->setDefault(0)->setComment('用户ID'))
             ->addColumn(Column::string('app_id',64)->setDefault(0)->setComment('用户ID'))
             ->create();

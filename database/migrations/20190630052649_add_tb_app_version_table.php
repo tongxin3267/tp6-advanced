@@ -29,9 +29,15 @@ class AddTbAppVersionTable extends Migrator
      */
     public function up()
     {
-        $table = $this->table(CommonTable::TB_APP_VERSION,array('engine'=>'InnoDB'));
+        $table = $this->table(CommonTable::TB_APP_VERSION,array('engine'=>'InnoDB','comment'=>'应用版本列表'));
         $table->addColumn(Column::string('app_id',64)->setDefault('')->setComment('应用ID'))
-            ->addColumn(Column::string('app_id',64)->setDefault('')->setComment('应用ID'))
+            ->addColumn(Column::string('version',32)->setDefault('')->setComment('版本'))
+            ->addColumn(Column::string('package',128)->setDefault('')->setComment('安裝包路徑'))
+            ->addColumn(Column::tinyInteger('is_update')->setDefault(0)->setComment('是否强制更新1是0否'))
+            ->addColumn(Column::tinyInteger('status')->setDefault(1)->setComment('状态1正常-1刪除'))
+            ->addColumn(Column::string('update_desc',2048)->setDefault('')->setComment('更新描述'))
+            ->addColumn(Column::integer('publish_time')->setDefault(0)->setComment('发布时间'))
+            ->addColumn(Column::integer('create_time')->setDefault(0)->setComment('添加时间'))
             ->create();
     }
 

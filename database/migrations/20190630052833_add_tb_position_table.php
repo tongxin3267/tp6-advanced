@@ -2,6 +2,7 @@
 
 use think\migration\Migrator;
 use think\migration\db\Column;
+use app\components\table\CommonTable;
 
 class AddTbPositionTable extends Migrator
 {
@@ -28,10 +29,14 @@ class AddTbPositionTable extends Migrator
      */
     public function up()
     {
-        $table = $this->table();
+        $table = $this->table(CommonTable::TB_POSITION,['engine'=>'InnoDB','comment'=>'职位表']);
+        $table->addColumn(Column::string('name',64)->setDefault('')->setComment('职位名称'))
+            ->addColumn(Column::string('code',32)->setDefault('')->setComment('职位编号'))
+            ->addColumn(Column::integer('create_time')->setDefault(0)->setComment('创建时间'))
+            ->create();
     }
 
     public function down(){
-
+        $this->table(CommonTable::TB_POSITION)->drop();
     }
 }

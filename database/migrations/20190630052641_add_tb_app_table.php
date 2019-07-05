@@ -30,7 +30,7 @@ class AddTbAppTable extends Migrator
     public function up()
     {
         // create app table
-        $table = $this->table(CommonTable::TB_APP,['engine'=>'InnoDB']);
+        $table = $this->table(CommonTable::TB_APP,['engine'=>'InnoDB','comment'=>'应用表']);
         $table->addColumn(Column::string('app_id',64)->setNull(false)->setDefault('')->setComment('应用ID'))
         ->addColumn(Column::string('name',64)->setNull(false)->setDefault('')->setComment('应用名称'))
         ->addColumn(Column::string('app_secret',64)->setNull(false)->setDefault('')->setComment('应用密钥'))
@@ -42,6 +42,7 @@ class AddTbAppTable extends Migrator
         ->addColumn(Column::string('domain',64)->setNull(false)->setDefault('')->setComment('域名'))
         ->addColumn(Column::string('ip_list',1024)->setNull(false)->setDefault('')->setComment('ip白名单，多个用逗号分隔'))
         ->addTimestamps()
+        ->addIndex(['app_id'],['unique'=>true])
         ->create();
     }
     /**
