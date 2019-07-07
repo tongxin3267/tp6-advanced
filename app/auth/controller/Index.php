@@ -5,6 +5,6 @@ class Index
 {
     public function index()
     {
-        return '您好！这是一个[auth]示例应用';
+        return view('index');
     }
 }

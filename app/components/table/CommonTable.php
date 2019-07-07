@@ -20,6 +20,6 @@ class CommonTable{
     const TB_POSITION = 'tb_position'; //岗位表
     const TB_USER_COMPANY = 'tb_user_company'; //用户所管公司
     const TB_COMPANY = 'tb_company'; //公司
-	const TB_LOGIN_LOG = 'tb_auth_login_log'; //登录日志表
-	const TB_ACCESS_LOG = 'tb_auth_access_log'; //访问日志表
+	const TB_LOGIN_LOG = 'tb_login_log'; //登录日志表
+	const TB_ACCESS_LOG = 'tb_access_log'; //访问日志表
 }
